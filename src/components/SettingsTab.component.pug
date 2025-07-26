@@ -54,7 +54,7 @@ div.sync-config-settings-tab
                             (ngModelChange)='config.save()',
                     )
                     .input-group-append(*ngIf='config.store.syncConfig.type !== "Gitee"')
-                        button.btn.btn-secondary(
+                        button.btn.btn-secondary.ml-3(
                             (click)='viewGist()',
                             [disabled]="config.store.syncConfig.gist === null || config.store.syncConfig.gist.toString().trim() === ''",
                             )
