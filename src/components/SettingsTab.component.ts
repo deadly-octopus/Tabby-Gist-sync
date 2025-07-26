@@ -78,10 +78,12 @@ export class SyncConfigSettingsTabComponent implements OnInit {
                 delete store.syncConfig;
 
                 // config file
-                files.push(new GistFile('config.yaml', yaml.dump(store)));
+                const rawConfig = yaml.dump(store);
+                const encryptedConfig = this.aesEncrypt(rawConfig, token);
+                files.push(new GistFile('config.yaml', encryptedConfig));
 
                 // ssh password
-                files.push(new GistFile('ssh.auth.json', JSON.stringify(await this.getSSHPluginAllPasswordInfos(token))));
+                // files.push(new GistFile('ssh.auth.json', JSON.stringify(await this.getSSHPluginAllPasswordInfos(token))));
 
                 this.config.store.syncConfig.gist = await syncGist(type, token, baseUrl, gist, files);
 
@@ -90,7 +92,9 @@ export class SyncConfigSettingsTabComponent implements OnInit {
                 const result = await getGist(type, token, baseUrl, gist);
 
                 if (result.has('config.yaml')) {
-                    const config = yaml.load(result.get('config.yaml').value) as any;
+                    const encrypted = result.get('config.yaml').value;
+                    const decryptedYaml = this.aesDecrypt(encrypted, token);
+                    const config = yaml.load(decryptedYaml) as any;
                     config.syncConfig = selfConfig;
                     this.config.writeRaw(yaml.dump(config));
                 }
@@ -101,9 +105,9 @@ export class SyncConfigSettingsTabComponent implements OnInit {
                     this.config.writeRaw(yaml.dump(config));
                 }
 
-                if (result.has('ssh.auth.json')) {
-                    await this.saveSSHPluginAllPasswordInfos(JSON.parse(result.get('ssh.auth.json').value) as Connection[], token);
-                }
+                // if (result.has('ssh.auth.json')) {
+                //     await this.saveSSHPluginAllPasswordInfos(JSON.parse(result.get('ssh.auth.json').value) as Connection[], token);
+                // }
 
             }
 

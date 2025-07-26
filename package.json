@@ -33,7 +33,6 @@
     "axios": "^0.21.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^5.1.1",
-    "electron": "^7.0.0",
     "jest": "^27.0.6",
     "js-yaml": "^4.1.0",
     "keytar": "^7.6.0",
@@ -59,7 +58,7 @@
   "peerDependencies": {
     "@angular/core": "^4.0.1"
   },
-  "repository": "starxg/terminus-sync-config",
+  "repository": "deadly-octopus/Tabby-Gist-sync",
   "dependencies": {
     "crypto-js": "^4.0.0"
   }
