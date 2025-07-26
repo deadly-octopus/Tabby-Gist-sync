@@ -54,7 +54,7 @@ div.sync-config-settings-tab
                             (ngModelChange)='config.save()',
                     )
                     .input-group-append(*ngIf='config.store.syncConfig.type !== "Gitee"')
-                        button.btn.btn-secondary.ml-3(
+                        button.btn.btn-secondary(style="margin-left: 0.75rem")(
                             (click)='viewGist()',
                             [disabled]="config.store.syncConfig.gist === null || config.store.syncConfig.gist.toString().trim() === ''",
                             )
@@ -71,7 +71,7 @@ div.sync-config-settings-tab
                 .mt-3.d-sm-none
                 button.btn.btn-outline-warning(
                     (click)='sync(false)',
-                    style={'margin-right':'10px'},
+                    style={'margin-left':'10px'},
                     [disabled]='isUploading || isDownloading',
                 ) 
                     div.fa.fa-cog.fa-spin(*ngIf='isDownloading')
