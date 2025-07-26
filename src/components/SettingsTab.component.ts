@@ -201,21 +201,48 @@ export class SyncConfigSettingsTabComponent implements OnInit {
     /* AES Begin http://www.kt5.cn/fe/2019/12/12/cryptojs-aes-128-bit-ecrypt-decrypt/ */
 
     aesEncrypt(str: string, token: string) {
-        const k = this.getEncKey(token);
-        const formatedKey = CryptoJS.enc.Utf8.parse(k)
-        const formatedIv = CryptoJS.enc.Utf8.parse(k)
-        const encrypted = CryptoJS.AES.encrypt(str, formatedKey, { iv: formatedIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
-        return encrypted.ciphertext.toString()
+        const key = CryptoJS.SHA256(token)
+        const iv = CryptoJS.lib.WordArray.random(16)
+        const encrypted = CryptoJS.AES.encrypt(str, key, {
+            iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        }
+        )
+
+        return CryptoJS.enc.Base64.stringify(iv.concat(encrypted.ciphertext))
+
+        // const k = this.getEncKey(token);
+        // const formatedKey = CryptoJS.enc.Utf8.parse(k)
+        // const formatedIv = CryptoJS.enc.Utf8.parse(k)
+        // const encrypted = CryptoJS.AES.encrypt(str, formatedKey, { iv: formatedIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+        // return encrypted.ciphertext.toString()
     }
 
     aesDecrypt(encryptedStr: string, token: string) {
-        const encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedStr)
-        const encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr)
-        const k = this.getEncKey(token);
-        const formatedKey = CryptoJS.enc.Utf8.parse(k)
-        const formatedIv = CryptoJS.enc.Utf8.parse(k)
-        const decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, formatedKey, { iv: formatedIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
-        return decryptedData.toString(CryptoJS.enc.Utf8)
+        const key = CryptoJS.SHA256(token)
+        const encryptedData = CryptoJS.enc.Base64.parse(encryptedStr)
+        const iv = CryptoJS.lib.WordArray.create(encryptedData.words.slice(0, 4))
+        const ciphertext = CryptoJS.lib.WordArray.create(encryptedData.words.slice(4))
+        const decrypted = CryptoJS.AES.decrypt(
+            { ciphertext },
+            key,
+            {
+                iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }
+        )
+
+    return decrypted.toString(CryptoJS.enc.Utf8)
+        
+        // const encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedStr)
+        // const encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr)
+        // const k = this.getEncKey(token);
+        // const formatedKey = CryptoJS.enc.Utf8.parse(k)
+        // const formatedIv = CryptoJS.enc.Utf8.parse(k)
+        // const decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, formatedKey, { iv: formatedIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+        // return decryptedData.toString(CryptoJS.enc.Utf8)
     }
 
     getEncKey(token: string): string {
