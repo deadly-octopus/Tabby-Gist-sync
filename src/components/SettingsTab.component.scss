@@ -1,23 +1,22 @@
-// .sync-config-settings-tab .form-line {
-
-//     .form-control,
-//     .input-group {
-//         width: 70%;
-//     }
-// }
-
 .sync-config-settings-tab .form-line {
+
     .form-control,
     .input-group {
         width: 70%;
     }
-
-    .input-group .form-control {
-        border-radius: 0.25rem 0 0 0.25rem;
-    }
-
-    .input-group-append .btn {
-        border-radius: 0 0.25rem 0.25rem 0 !important;
-        margin-left: 0.75rem;
-    }
 }
+
+// .sync-config-settings-tab .form-line {
+//     .form-control,
+//     .input-group {
+//         width: 70%;
+//     }
+
+//     .input-group .form-control {
+//         border-radius: 0.25rem 0 0 0.25rem;
+//     }
+
+//     .input-group-append .btn {
+//         border-radius: 0 0.25rem 0.25rem 0 !important;
+//     }
+// }
