@@ -6,7 +6,6 @@ import { PasswordStorageService } from 'services/PasswordStorage.service';
 import CryptoJS from 'crypto-js'
 import * as yaml from 'js-yaml'
 import { GistFile } from 'gist/Gist';
-import GitLab from 'gist/GitLab';
 
 /** @hidden */
 @Component({

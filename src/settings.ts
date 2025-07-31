@@ -4,7 +4,7 @@ import { SettingsTabProvider } from 'terminus-settings'
 @Injectable()
 export class SyncConfigSettingsTabProvider extends SettingsTabProvider {
     id = 'sync-config'
-    icon = 'cloud'
+    icon = 'cloud-arrow-up'
     title = 'Gist config sync'
 
     getComponentType(): any {
