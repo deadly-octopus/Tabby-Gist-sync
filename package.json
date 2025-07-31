@@ -1,7 +1,7 @@
 {
-  "name": "terminus-sync-config",
-  "version": "1.2.0",
-  "description": "Sync configuration files to GitHub Gist or Gitee Gist",
+  "name": "tabby-gist-config",
+  "version": "1.0.0",
+  "description": "Sync your tabby.sh configuration via GitHub/GitLab/Gitee Gists",
   "keywords": [
     "terminus-plugin",
     "tabby-plugin"
@@ -17,7 +17,7 @@
   "files": [
     "dist"
   ],
-  "author": "starxg",
+  "author": "deadly-octopus",
   "license": "MIT",
   "devDependencies": {
     "@angular/animations": "^7.2.8",

@@ -1,13 +1,9 @@
-# Sync Config
+# Gist config sync
 
 ### For the [Tabby](https://github.com/Eugeny/tabby) terminal
 
-This plugin can Sync configuration files to GitHub Gist or Gitee Gist.
+This plugin allows you sync your tabby.sh configuration via GitHub/GitLab/Gitee Gists.
+
+For additional security plugin encrypts entire configuration with AES-256.
 
 ![](./screenshot.png)
-
----
-
-Like my work?
-
-[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/huangxingguang)
