@@ -11,4 +11,5 @@ For additional security plugin encrypts entire configuration with AES-256-CBC.
 3. Install [plugin](https://github.com/deadly-octopus/Tabby-Gist-sync/releases/latest)
 4. Use your secret gist URL and token to sync your config in plugin settings
 
+
 ![](./screenshot.png)
