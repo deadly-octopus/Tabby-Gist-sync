@@ -1,5 +1,4 @@
-h3 Gist sync config
-
+h3 Gist config sync
 div.sync-config-settings-tab
     .row
         .col-md-7
@@ -37,14 +36,6 @@ div.sync-config-settings-tab
                 )   
             .form-line
                 .header
-                    .title Encryption
-                    .description Use token to encrypt SSH passwords
-                toggle(
-                    [(ngModel)]='config.store.syncConfig.encryption',
-                    (ngModelChange)='config.save()',
-                )
-            .form-line
-                .header
                     .title Gist
                 .input-group
                     input.form-control(
@@ -54,7 +45,7 @@ div.sync-config-settings-tab
                             (ngModelChange)='config.save()',
                     )
                     .input-group-append(*ngIf='config.store.syncConfig.type !== "Gitee"')
-                        button.btn.btn-secondary(style="margin-left: 0.75rem")(
+                        button.btn.btn-secondary(
                             (click)='viewGist()',
                             [disabled]="config.store.syncConfig.gist === null || config.store.syncConfig.gist.toString().trim() === ''",
                             )
