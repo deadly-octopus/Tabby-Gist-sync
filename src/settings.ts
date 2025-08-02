@@ -5,7 +5,7 @@ import { SettingsTabProvider } from 'terminus-settings'
 export class SyncConfigSettingsTabProvider extends SettingsTabProvider {
     id = 'sync-config'
     icon = 'cloud-arrow-up'
-    title = 'Gist config sync'
+    title = 'Gist sync'
 
     getComponentType(): any {
         return SyncConfigSettingsTabComponent;
